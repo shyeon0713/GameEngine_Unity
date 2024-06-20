@@ -40,8 +40,7 @@ public class GameManager : MonoBehaviour
         totalNotes = FindObjectsOfType<NoteObject>().Length;
         resultsScreen.SetActive(false);  // 게임 시작 시 결과 화면 비활성화
 
-        
-
+       
     }
 
     // Update is called once per frame
@@ -74,11 +73,13 @@ public class GameManager : MonoBehaviour
 
                 if(percentHit > 60.0f)
                 {
-                     percentHitText.text = "해원(解冤)성공";
+                    finalScorText.text = "총점수 :" + currentScore;
+                    percentHitText.text = "해원성공";
                 }
                 else
                 {
-                    percentHitText.text = "해원(解冤)실패";
+                    finalScorText.text = "총점수 :" + currentScore;
+                    percentHitText.text = "해원실패";
                 }
             }
         }
