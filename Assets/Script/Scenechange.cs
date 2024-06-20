@@ -13,14 +13,28 @@ public class Scenechange : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
             StartCoroutine(PlaySoundAndChangeScene());
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitGame();
+        }
     }
 
+    void QuitGame()
+    {
+#if UNITY_EDITOR
+        // 에디터에서 실행 중일 때는 에디터를 중지합니다.
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // 빌드된 게임에서는 애플리케이션을 종료합니다.
+        Application.Quit();
+#endif
+    }
     private IEnumerator PlaySoundAndChangeScene()
     {
         audio.Play();
